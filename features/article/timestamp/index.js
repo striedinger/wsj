@@ -1,0 +1,24 @@
+import { format } from 'fecha';
+import styled from '@emotion/styled';
+
+const Container = styled.time`
+  color: #666;
+  font-family: Retina, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 22px;
+`;
+
+const Timestamp = ({ article }) => {
+  const { published, updated } = article;
+  if (!published && !updated) return null;
+  const dateFormat = 'MMM. D, YYYY h:mm a ET';
+  const displayDate = updated ? format(new Date(updated), `[Updated] ${dateFormat}`) : format(new Date(published), `[Published] ${dateFormat}`);
+  return (
+    <Container>
+      {displayDate}
+    </Container>
+  );
+};
+
+export default Timestamp;
