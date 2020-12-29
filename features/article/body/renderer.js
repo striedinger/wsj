@@ -12,10 +12,10 @@ import Image from './blocks/image';
 const renderer = (json) => (
   json.map((element, index) => {
     const {
-      content, emphasis, hed_type: hedType, ordered, text, type, uri,
+      content, emphasis, has_drop_cap: hasDropCap, hed_type: hedType, ordered, text, type, uri,
     } = element;
     const contents = (content && renderer(content)) || text;
-    if (type === 'paragraph') return <Paragraph key={index}>{contents}</Paragraph>;
+    if (type === 'paragraph') return <Paragraph key={index} hasDropCap={hasDropCap}>{contents}</Paragraph>;
     if (type === 'tagline') return <Tagline key={index}>{contents}</Tagline>;
     if (type === 'emphasis' && emphasis === 'BOLD') return <Strong key={index}>{contents}</Strong>;
     if (type === 'emphasis' && emphasis === 'ITALIC') return <Italic key={index}>{contents}</Italic>;
