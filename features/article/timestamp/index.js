@@ -1,5 +1,6 @@
+import PropTypes from 'prop-types';
 import { format } from 'fecha';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
 const Container = styled.time`
   color: #666;
@@ -19,6 +20,20 @@ const Timestamp = ({ article }) => {
       {displayDate}
     </Container>
   );
+};
+
+Timestamp.propTypes = {
+  article: PropTypes.shape({
+    published: PropTypes.string,
+    updated: PropTypes.string,
+  }),
+};
+
+Timestamp.defaultProps = {
+  article: {
+    published: '',
+    updated: '',
+  },
 };
 
 export default Timestamp;

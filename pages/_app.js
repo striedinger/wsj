@@ -1,7 +1,18 @@
-import './global.css'
+import PropTypes from 'prop-types';
+import GlobalStyle from 'styles/global';
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function App({ Component, pageProps }) {
+  return (
+    <>
+      <GlobalStyle />
+      <Component {...pageProps} />
+    </>
+  );
 }
 
-export default MyApp
+App.propTypes = {
+  Component: PropTypes.node.isRequired,
+  pageProps: PropTypes.node.isRequired,
+};
+
+export default App;

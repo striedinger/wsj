@@ -1,4 +1,5 @@
-import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const H1 = styled.h1`
   color: #333;
@@ -13,6 +14,18 @@ const Headline = ({ article }) => {
   const { headline } = article;
   if (!headline) return null;
   return <H1>{headline}</H1>;
+};
+
+Headline.propTypes = {
+  article: PropTypes.shape({
+    headline: PropTypes.string,
+  }),
+};
+
+Headline.defaultProps = {
+  article: {
+    headline: '',
+  },
 };
 
 export default Headline;

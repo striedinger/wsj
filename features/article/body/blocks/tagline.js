@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import Paragraph from './paragraph';
 
 const Tagline = styled(Paragraph)`

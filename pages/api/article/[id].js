@@ -6,7 +6,6 @@ export default async (req, res) => {
     const data = await fetchArticle(seoId);
     return res.json(data);
   } catch (error) {
-    console.error(error);
     return res.status(error.status || 500).end(error.message);
   }
 };

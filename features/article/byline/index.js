@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
-import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const Container = styled.div`
   font-family: Exchange, Georgia, serif;
@@ -13,14 +14,15 @@ const Author = styled.a`
 
 const Byline = ({ article }) => {
   const { byline } = article;
-  if (!byline) return null;
+  if (!byline || byline.length === 0) return null;
   const content = byline.map((element, index) => {
     if (element.type === 'phrase' && element.phrase_type === 'author') {
       return (
         <Author
           key={index}
           href={`https://www.wsj.com/news/author/${element.id}`}
-          target="_blank" rel="noopener noreferrer"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           {element.text}
         </Author>
@@ -33,6 +35,18 @@ const Byline = ({ article }) => {
       {content}
     </Container>
   );
+};
+
+Byline.propTypes = {
+  article: PropTypes.shape({
+    byline: PropTypes.arrayOf(PropTypes.shape()),
+  }),
+};
+
+Byline.defaultProps = {
+  article: {
+    byline: [],
+  },
 };
 
 export default Byline;

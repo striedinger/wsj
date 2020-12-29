@@ -1,5 +1,7 @@
-import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import NextImage from 'next/image';
+import { useAmp } from 'next/amp';
 
 const Figure = styled.figure`
   margin: 0;
@@ -24,14 +26,53 @@ const Credit = styled.span`
   line-height: 20px;
 `;
 
-const Image = ({ data: { caption, credit, properties: { location }, height, width } }) => (
-  <Figure>
-    <NextImage src={location} height={height} width={width} />
-    <Figcaption>
-      <Caption>{caption}</Caption>
-      {credit && <Credit>{`Photo: ${credit}`}</Credit>}
-    </Figcaption>
-  </Figure>
-);
+const Image = ({
+  data: {
+    caption, credit,
+    properties: { location } = {}, height, width,
+  },
+}) => {
+  const isAmp = useAmp();
+  return (
+    <Figure>
+      {isAmp ? (
+        <amp-img
+          alt={caption}
+          height={height}
+          layout="responsive"
+          src={location}
+          width={width}
+        />
+      ) : (
+        <NextImage
+          alt={caption}
+          height={height}
+          src={location}
+          width={width}
+        />
+      )}
+      <Figcaption>
+        <Caption>{caption}</Caption>
+        {credit && <Credit>{`Photo: ${credit}`}</Credit>}
+      </Figcaption>
+    </Figure>
+  );
+};
+
+Image.propTypes = {
+  data: PropTypes.shape({
+    caption: PropTypes.string,
+    credit: PropTypes.string,
+    height: PropTypes.number,
+    properties: PropTypes.shape({
+      location: PropTypes.string,
+    }),
+    width: PropTypes.number,
+  }),
+};
+
+Image.defaultProps = {
+  data: {},
+};
 
 export default Image;

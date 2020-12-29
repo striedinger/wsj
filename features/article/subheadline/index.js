@@ -1,4 +1,5 @@
-import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const H2 = styled.h2`
   color: #666;
@@ -13,6 +14,18 @@ const Subheadline = ({ article }) => {
   const { subheadline } = article;
   if (!subheadline) return null;
   return <H2>{subheadline}</H2>;
+};
+
+Subheadline.propTypes = {
+  article: PropTypes.shape({
+    subheadline: PropTypes.string,
+  }),
+};
+
+Subheadline.defaultProps = {
+  article: {
+    subheadline: '',
+  },
 };
 
 export default Subheadline;
