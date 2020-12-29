@@ -5,21 +5,14 @@ const { ALLESSEH_ENDPOINT, ALLESSEH_KEY } = process.env;
 // Adds referenced data (links, image url's, etc.) to elements from `links.related` array
 const expandElements = (json = [], references) => (
   json.map((element) => {
-    if (element.type === 'image' || element.type === 'video' || element.type === 'media') {
+    if (element.ref) {
       const expandedElement = references.find((item) => item.id === element.ref) || {};
       return {
         ...element,
         ...expandedElement,
       };
     }
-    if (element.type === 'link') {
-      const expandedElement = references.find((item) => item.id === element.ref) || {};
-      return {
-        ...element,
-        ...expandedElement,
-      };
-    }
-    if (element.type === 'paragraph') {
+    if (element.content) {
       return {
         ...element,
         content: expandElements(element.content, references),
@@ -37,11 +30,11 @@ export const format = (json) => {
   const body = expandElements(get(data, 'body', []), references);
   return {
     id,
-    headline: get(data, 'headline.text'),
-    subheadline: get(data, 'standfirst.content[0].text'),
-    published: get(data, 'published_datetime'),
-    updated: get(data, 'updated_datetime'),
-    byline: get(data, 'byline'),
+    headline: get(data, 'headline.text', null),
+    subheadline: get(data, 'standfirst.content[0].text', null),
+    published: get(data, 'published_datetime', null),
+    updated: get(data, 'updated_datetime', null),
+    byline: get(data, 'byline', []),
     body,
   };
 };

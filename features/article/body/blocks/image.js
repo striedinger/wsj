@@ -5,6 +5,14 @@ import { useAmp } from 'next/amp';
 
 const Figure = styled.figure`
   margin: 0;
+
+  @media (min-width: 640px) {
+  ${(props) => props.layout === 'wrap' && {
+    float: 'left',
+    margin: '3px 30px 23px 0',
+    width: '300px',
+  }}
+  }
 `;
 
 const Figcaption = styled.figcaption`
@@ -29,12 +37,15 @@ const Credit = styled.span`
 const Image = ({
   data: {
     caption, credit,
-    properties: { location } = {}, height, width,
+    properties: {
+      location,
+      responsive: { layout },
+    } = {}, height, width,
   },
 }) => {
   const isAmp = useAmp();
   return (
-    <Figure>
+    <Figure layout={layout}>
       {isAmp ? (
         <amp-img
           alt={caption}
@@ -66,6 +77,9 @@ Image.propTypes = {
     height: PropTypes.number,
     properties: PropTypes.shape({
       location: PropTypes.string,
+      responsive: PropTypes.shape({
+        layout: PropTypes.string,
+      }),
     }),
     width: PropTypes.number,
   }),
