@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Link = styled.a`
-  color: #0274b6;
+  color: var(--color-blue);
 
   &:hover {
     text-decoration: none;

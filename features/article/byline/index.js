@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  font-family: Exchange, Georgia, serif;
+  font-family: var(--font-serif);
   font-style: italic;
   font-weight: 400;
 `;

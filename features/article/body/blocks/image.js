@@ -9,7 +9,7 @@ const Figure = styled.figure`
 
 const Figcaption = styled.figcaption`
   color: #666;
-  font-family: Retina, Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans-serif);
   font-weight: 300;
 `;
 

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Container = styled.time`
   color: #666;
-  font-family: Retina, Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans-serif);
   font-size: 14px;
   font-weight: 300;
   line-height: 22px;

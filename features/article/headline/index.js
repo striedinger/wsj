@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const H1 = styled.h1`
-  color: #333;
-  font-family: Escrow Condensed, Georgia, serif;
+  color: var(--color-coal);
+  font-family: var(--font-serif-display);
   font-size: 40px;
   font-weight: 700;
   line-height: 1em;
