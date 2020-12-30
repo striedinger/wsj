@@ -36,7 +36,7 @@ const renderer = (json) => (
     if (type === 'image') return <Image key={index} data={element} />;
     if (type === 'video') return <Video key={index} data={element} />;
     // Insets
-    if (type === 'inset' && insetType === 'pagebreak') return <Pagebreak key={index} />;
+    if (type === 'inset' && insetType === 'pagebreak') return <Pagebreak key={index} $data={element} />;
     // Plain text
     if (!type && text) return <Fragment key={index}>{text}</Fragment>;
     return null;

@@ -40,27 +40,30 @@ const Image = ({
     properties: {
       location,
       responsive: { layout },
+      softcrop,
     } = {}, height, width,
   },
 }) => {
   if (!location) return null;
+  const imageHeight = softcrop === 'Full Sized Square' ? 300 : height;
+  const imageWidth = softcrop === 'Full Sized Square' ? 300 : width;
   const isAmp = useAmp();
   return (
     <Figure layout={layout}>
       {isAmp ? (
         <amp-img
           alt={caption}
-          height={height}
+          height={imageHeight}
           layout="responsive"
           src={location}
-          width={width}
+          width={imageWidth}
         />
       ) : (
         <NextImage
           alt={caption}
-          height={height}
+          height={imageHeight}
           src={location}
-          width={width}
+          width={imageWidth}
         />
       )}
       <Figcaption>
