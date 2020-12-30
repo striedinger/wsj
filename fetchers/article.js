@@ -1,9 +1,7 @@
-import get from 'lodash.get';
-
 const { ALLESSEH_ENDPOINT, ALLESSEH_KEY } = process.env;
 
 // Adds referenced data (links, image url's, etc.) to elements from `links.related` array
-const expandElements = (json = [], references) => (
+const expandElements = (json = [], references = []) => (
   json.map((element) => {
     if (element.ref) {
       const expandedElement = references.find((item) => item.id === element.ref) || {};
@@ -24,17 +22,17 @@ const expandElements = (json = [], references) => (
 
 // Formats Allesseh data to a simpler object while keeping each element's schema
 export const format = (json) => {
-  const id = get(json, 'data.id');
-  const data = get(json, 'data.attributes', {});
-  const references = get(json, 'links.related', []);
-  const body = expandElements(get(data, 'body', []), references);
+  const id = json.data?.id;
+  const data = json.data?.attributes || {};
+  const references = json.links?.related || [];
+  const body = expandElements(data.body, references);
   return {
     id,
-    headline: get(data, 'headline.text', null),
-    subheadline: get(data, 'standfirst.content[0].text', null),
-    published: get(data, 'published_datetime', null),
-    updated: get(data, 'updated_datetime', null),
-    byline: get(data, 'byline', []),
+    headline: data.headline?.text || null,
+    subheadline: data.standfirst?.content?.[0]?.text || null,
+    published: data.published_datetime || null,
+    updated: data.updated_datetime || null,
+    byline: data.byline || [],
     body,
   };
 };
