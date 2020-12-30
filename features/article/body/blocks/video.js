@@ -55,6 +55,7 @@ const Video = ({ data: { caption, name: guid, title } }) => {
           setState({ thumbnail, video });
         }
       })
+      // eslint-disable-next-line no-console
       .catch((error) => console.error(error));
   }, [guid]);
 

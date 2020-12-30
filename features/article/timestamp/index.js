@@ -4,10 +4,12 @@ import styled from 'styled-components';
 
 const Container = styled.time`
   color: #666;
+  display: block;
   font-family: var(--font-sans-serif);
   font-size: 14px;
   font-weight: 300;
   line-height: 22px;
+  margin-bottom: 20px;
 `;
 
 const Timestamp = ({ article }) => {
