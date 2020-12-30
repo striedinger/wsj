@@ -38,6 +38,6 @@ export async function getServerSideProps({ params }) {
   }
 }
 
-export const config = { amp: true };
+export const config = { amp: 'hybrid' };
 
 export default Article;

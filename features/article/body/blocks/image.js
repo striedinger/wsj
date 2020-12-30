@@ -43,6 +43,7 @@ const Image = ({
     } = {}, height, width,
   },
 }) => {
+  if (!location) return null;
   const isAmp = useAmp();
   return (
     <Figure layout={layout}>
