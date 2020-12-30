@@ -50,7 +50,7 @@ const Video = ({ data: { caption, name: guid, title } }) => {
       .then((response) => response.json())
       .then((json) => {
         const { items } = json;
-        if (items && items[0]) {
+        if (items?.[0]) {
           const { videoStillURL: thumbnail, video2564kMP4Url: video } = items[0];
           setState({ thumbnail, video });
         }
