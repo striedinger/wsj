@@ -11,6 +11,13 @@ const getAmpIframeUrl = (guid) => (
 
 const Figure = styled.figure`
   margin: 20px 0;
+
+  ${(props) => !props.isHero && `
+    @media (min-width: 1300px) {
+      margin-left: -40px;
+      width: 805px;
+    }
+  `}
 `;
 
 const Figcaption = styled.figcaption`
@@ -28,7 +35,7 @@ const Placeholder = styled.div`
 
 const Strap = styled.div`
   border-top: 1px solid #dadada;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 `;
 
 const Title = styled.h4`
@@ -40,7 +47,7 @@ const Title = styled.h4`
   padding: 8px 0 0 0;
 `;
 
-const Video = ({ data: { caption, name: guid, title } }) => {
+const Video = ({ data: { caption, name: guid, title }, isHero }) => {
   if (!guid) return null;
   const isAmp = useAmp();
   const [state, setState] = useState({});
@@ -60,10 +67,10 @@ const Video = ({ data: { caption, name: guid, title } }) => {
   }, [guid]);
 
   const withWrapper = (Component) => (
-    <Figure>
-      {title && (
+    <Figure isHero={isHero}>
+      {!isHero && (
         <Strap>
-          <Title>{title}</Title>
+          {!title && <Title>{title}</Title>}
         </Strap>
       )}
       {Component}

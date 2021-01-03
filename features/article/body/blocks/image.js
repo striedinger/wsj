@@ -6,13 +6,20 @@ import { useAmp } from 'next/amp';
 const Figure = styled.figure`
   margin: 0;
 
-  @media (min-width: 640px) {
-  ${(props) => props.layout === 'wrap' && {
-    float: 'left',
-    margin: '3px 30px 23px 0',
-    width: '300px',
-  }}
-  }
+  ${(props) => (!props.isHero && props.layout === 'wrap') && `
+    @media (min-width: 640px) {
+      float: left;
+      margin: 3px 30px 23px 0;
+      width: 300px;
+    }
+  `}
+
+  ${(props) => (!props.isHero && props.layout === 'bleed') && `
+    @media (min-width: 1300px) {
+      margin-left: -160px;
+      width: 1260px;
+    }
+  `}
 `;
 
 const Figcaption = styled.figcaption`
@@ -45,8 +52,9 @@ const Image = ({
   },
 }) => {
   if (!location) return null;
-  const imageHeight = softcrop === 'Full Sized Square' ? 300 : height;
-  const imageWidth = softcrop === 'Full Sized Square' ? 300 : width;
+  // eslint-disable-next-line no-nested-ternary
+  const imageHeight = softcrop === 'Full Sized Square' ? (layout === 'wrap' ? 300 : width) : height;
+  const imageWidth = softcrop === 'Full Sized Square' ? (layout === 'wrap' ? 300 : width) : width;
   const isAmp = useAmp();
   return (
     <Figure layout={layout}>

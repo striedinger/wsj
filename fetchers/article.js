@@ -33,6 +33,7 @@ export const format = (json) => {
     published: data.published_datetime || null,
     updated: data.updated_datetime || null,
     byline: data.byline || [],
+    hero: body.length > 0 && (body[0].type === 'image' || body[0].type === 'video') && body.shift(),
     body,
   };
 };

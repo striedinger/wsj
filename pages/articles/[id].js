@@ -4,6 +4,7 @@ import fetchArticle from 'fetchers/article';
 import Metadata from 'features/article/metadata';
 import Headline from 'features/article/headline';
 import Subheadline from 'features/article/subheadline';
+import Hero from 'features/article/hero';
 import Byline from 'features/article/byline';
 import Timestamp from 'features/article/timestamp';
 import Body from 'features/article/body';
@@ -82,6 +83,7 @@ const ArticlePage = ({ article }) => (
         <Subheadline article={article} />
       </Header>
       <Main>
+        <Hero article={article} />
         <Content>
           <Byline article={article} />
           <Timestamp article={article} />
