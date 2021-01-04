@@ -11,6 +11,7 @@ import ListItem from './blocks/list-item';
 import Image from './blocks/image';
 import Video from './blocks/video';
 // Insets
+import DynamicInset from './blocks/insets/dynamic';
 import Pagebreak from './blocks/insets/pagebreak';
 
 const renderer = (json) => (
@@ -37,6 +38,7 @@ const renderer = (json) => (
     if (type === 'video') return <Video key={index} data={element} />;
     // Insets
     if (type === 'inset' && insetType === 'pagebreak') return <Pagebreak key={index} $data={element} />;
+    if (type === 'inset' && insetType === 'dynamic') return <DynamicInset key={index} data={element} />;
     // Plain text
     if (!type && text) return <Fragment key={index}>{text}</Fragment>;
     return null;
