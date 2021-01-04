@@ -21,7 +21,7 @@ const LogoContainer = styled.a`
 
 const Header = () => (
   <Container>
-    <LogoContainer href="/">
+    <LogoContainer href="/" aria-label="The Wall Street Journal">
       <Logo />
     </LogoContainer>
   </Container>

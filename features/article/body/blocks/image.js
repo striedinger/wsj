@@ -28,7 +28,8 @@ const Figcaption = styled.figcaption`
   font-weight: 300;
 `;
 
-const Caption = styled.h4`
+const Caption = styled.span`
+  display: block;
   font-size: 16px;
   font-weight: 300;
   line-height: 22px;
@@ -54,6 +55,7 @@ const Image = ({
   if (!location) return null;
   // eslint-disable-next-line no-nested-ternary
   const imageHeight = softcrop === 'Full Sized Square' ? (layout === 'wrap' ? 300 : width) : height;
+  // eslint-disable-next-line no-nested-ternary
   const imageWidth = softcrop === 'Full Sized Square' ? (layout === 'wrap' ? 300 : width) : width;
   const isAmp = useAmp();
   return (
