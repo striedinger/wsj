@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import fetchArticle from 'fetchers/article';
+import Layout from 'layouts/default';
 import Metadata from 'features/article/metadata';
 import Headline from 'features/article/headline';
 import Subheadline from 'features/article/subheadline';
@@ -117,4 +118,4 @@ export async function getServerSideProps({ params }) {
 
 export const config = { amp: 'hybrid' };
 
-export default ArticlePage;
+export default Layout(ArticlePage);

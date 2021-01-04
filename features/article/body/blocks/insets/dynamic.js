@@ -7,6 +7,7 @@ const Container = styled.div`
   display: flex;
   height: 300px;
   justify-content: center;
+  padding: 10px;
   text-align: center;
   word-break: break-all;
   word-wrap: break-word;
