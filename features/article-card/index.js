@@ -2,14 +2,14 @@ import renderer from './renderer';
 import components from './components';
 
 const defaultStructure = [
-  { component: 'media', props: { floatRight: true } },
+  { component: 'media', props: { floatRight: true, width: '110px' } },
   { component: 'headline', props: { level: 3 } },
   'summary',
   'bullets',
 ];
 
 const mockData = {
-  headline: 'Test Headline',
+  headline: 'The Battery Is Ready to Power the World',
   summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec tortor sit amet quam egestas eleifend in ac erat. In commodo dui sit amet velit vestibulum lacinia.',
   media: 'http://placehold.it/160x90',
   url: 'https://www.wsj.com',

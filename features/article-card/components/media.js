@@ -4,23 +4,23 @@ import NextImage from 'next/image';
 
 const Container = styled.div`
   margin-bottom: 8px;
-  width: 100%;
+  width: ${(props) => props.containerWidth};
 
   ${(props) => props.floatRight && `
     float:right;
     margin-left: 8px;
-    width: 110px;
   `}
 
   ${(props) => props.floatLeft && `
     float: left;
     margin-right: 8px;
-    width: 110px;
   `}
 `;
 
-const Media = ({ floatLeft, floatRight, data: { media } }) => (
-  <Container floatRight={floatRight} floatLeft={floatLeft}>
+const Media = ({
+  floatLeft, floatRight, width, data: { media },
+}) => (
+  <Container floatRight={floatRight} floatLeft={floatLeft} containerWidth={width}>
     <NextImage src={media} width="190" height="90" layout="responsive" />
   </Container>
 );
@@ -31,12 +31,14 @@ Media.propTypes = {
   }),
   floatLeft: PropTypes.bool,
   floatRight: PropTypes.bool,
+  width: PropTypes.string,
 };
 
 Media.defaultProps = {
   data: {},
   floatLeft: false,
   floatRight: false,
+  width: '100%',
 };
 
 export default Media;

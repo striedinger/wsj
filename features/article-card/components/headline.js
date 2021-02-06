@@ -4,34 +4,34 @@ import styled from 'styled-components';
 const levels = {
   1: {
     'font-size': '36px',
-    'font-weight': '700',
     'line-height': '36px',
   },
   2: {
     'font-size': '30px',
-    'font-weight': '700',
     'line-height': '30px',
   },
   3: {
-    'font-size': '20px',
-    'font-weight': '700',
-    'line-height': '22px',
+    'font-size': '22px',
+    'line-height': '24px',
   },
   4: {
-    'font-size': '18px',
-    'font-weight': '700',
+    'font-size': '20px',
     'line-height': '22px',
   },
   5: {
+    'font-size': '18px',
+    'line-height': '22px',
+  },
+  6: {
     'font-family': 'var(--font-serif)',
     'font-size': '14px',
-    'font-weight': '400',
     'line-height': '18px',
   },
 };
 
 const Heading = styled.h3`
   font-family: var(--font-serif-display);
+  font-weight: ${(props) => props.fontWeight};
   margin: 0 0 8px 0;
 
   ${(props) => props.alignCenter && `
@@ -47,9 +47,9 @@ const Link = styled.a`
 `;
 
 const Headline = ({
-  alignCenter, level, tag, data: { headline, url },
+  alignCenter, fontWeight, level, tag, data: { headline, url },
 }) => (
-  <Heading as={tag} level={level} alignCenter={alignCenter}>
+  <Heading as={tag} level={level} alignCenter={alignCenter} fontWeight={fontWeight}>
     <Link href={url}>{headline}</Link>
   </Heading>
 );
@@ -60,6 +60,7 @@ Headline.propTypes = {
     url: PropTypes.string,
   }),
   alignCenter: PropTypes.bool,
+  fontWeight: PropTypes.string,
   level: PropTypes.number,
   tag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5']),
 };
@@ -67,6 +68,7 @@ Headline.propTypes = {
 Headline.defaultProps = {
   data: {},
   alignCenter: false,
+  fontWeight: '700',
   level: 3,
   tag: 'h3',
 };
