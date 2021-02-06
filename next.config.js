@@ -1,6 +1,6 @@
 module.exports = {
   images: {
-    domains: ['images.wsj.net'],
+    domains: ['images.wsj.net', 'placehold.it'],
   },
   webpack(config) {
     config.module.rules.push({
