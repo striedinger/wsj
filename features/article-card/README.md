@@ -39,4 +39,4 @@ The renderer function is the heart of this article card, a simple recursive func
 
   ### Bring your own components
 
-  In case that the default components do not work for you, or you need extra components that do not exist elsewhere and should not be shared all you need to do is creating your own component, and add it to the component map that is passed to the renderer function. 
+  In case that the default components do not work for you, or you need extra components that do not exist elsewhere and should not be shared all you need to do is create your own component, and add it to the component map that is passed to the renderer function. 
