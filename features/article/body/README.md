@@ -1,5 +1,11 @@
 # Article Body 
 
+## Blocks
+
+Blocks are simply components that make up the different elements that can exist in an article body. They are plain `React` components with no extra or special props. However, they can be divided into two categories: 
+1. _Native_: These blocks are basically a 1:1 representation of a native DOM element but styled in accordance of our design system. _Most_ times these directly export a styled component so there really is no value to share or export these outside the body. (Example: Paragraph, Link, List, etc.);
+2. Story Components: These are more dynamic and engaging blocks that usually require more complex logic and might take different props to change their behavior, most times they will also need alternate versions of themselves to work correctly across different platofrms, like amp. (Example: Table of Contents, Dynamic Insets, etc.)
+
 ## Renderer
 
 The renderer function is what brings all the pieces together and returns a nicely rendered article body, it is for all intents and purposes a `React` version of `capi-converter`.
@@ -28,10 +34,6 @@ If the current element has no type, but has a text property we will render plain
 if (!type && text) return <Fragment key={index}>{text}</Fragment>;
 return null;
 ```
-
-
-## Blocks
-
 ## What about ads, newsletters, etc.?
 
 We want to keep this component simple and pure, to focus mostly on article body related development, but we understand that we are also required to add monetization and marketing features that most times are out of our control and sometimes even knowledge.
