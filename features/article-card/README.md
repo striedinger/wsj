@@ -2,13 +2,13 @@
 
 The idea behind this article card implementation is shareability and portability. Basically, we want to provide defaults that are themable (changing, colors, font sizes, spacing, etc.) for anyone to use, while also providing the flexibility of bringing your own components with _any_ logic that they may need.
 
-## [Renderer](features/article-card/renderer.js)
+## [Renderer](renderer.js)
 
 The renderer function is the heart of this article card, a simple recursive function that takes a tree that defines the structure of the article card, an object with the article's data, and a map of components available. It returns a rendered React tree, that can be used anywhere to create your own customized version of Article Card, with your own set of components.
 
 ## Components
 
-  ### [Map](features/article-card/components/index.js)
+  ### [Map](components/index.js)
 
   The component map will hold all available components, linking each import to a unique `type` that will be then passed onto the renderer function. 
 
