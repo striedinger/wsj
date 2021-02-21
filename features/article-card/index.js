@@ -1,5 +1,5 @@
+import DEFAULT_COMPONENTS from './components';
 import renderer from './renderer';
-import components from './components';
 
 const defaultStructure = [
   { component: 'media', props: { floatRight: true, width: '110px' } },
@@ -25,8 +25,8 @@ const mockData = {
   ],
 };
 
-const ArticleCard = ({ structure = defaultStructure }) => {
-  const elements = renderer(structure, mockData, components);
+const ArticleCard = ({ components = DEFAULT_COMPONENTS, structure = defaultStructure }) => {
+  const elements = renderer(structure, components, mockData);
   return (
     <article>
       {elements}

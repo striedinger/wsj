@@ -39,21 +39,21 @@ The renderer function is the heart of this article card, a simple recursive func
 
   ### Bring your own components
 
-  In case that the default components do not work for you, or you need extra components that do not exist elsewhere and should not be shared all you need to do is create your own component, and add it to the component map that is passed to the renderer function. Example:
+  In case that the default components do not work for you, or you need extra components that do not exist elsewhere and should not be shared all you need to do is pass a component map to the `components` prop. This can be a completely new component map, or you can expand on the default set and add your new ones. Since the default set is dynamically imported, your client bundle will not be affected by components that aren't ultimately used. Example:
 
   ```
-import renderer from './renderer';
-import defaultComponents from './components';
-import MyComponent from './mycomponent';
+import ArticleCard from 'features/article-card';
+import DEFAULT_COMPONENTS from 'features/article-card/components';
+import MyComponent from 'components/mycomponent';
 
 const components = {
-  ...defaultComponents,
+  ...DEFAULT_COMPONENTS,
   mycomponent: MyComponent,
 };
 
-export default MyArticleCard = ({ structure } ) => (
-  <article>
-    {renderer(structure, data, components)}
-  </article>
+export default SectionFront = () => (
+  <div>
+    <ArticleCard components={components} />
+  </div>
 );
   ```

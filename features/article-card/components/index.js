@@ -1,11 +1,8 @@
-import Headline from './headline';
-import Summary from './summary';
-import Media from './media';
-import Bullets from './bullets';
+import dynamic from 'next/dynamic';
 
 export default {
-  headline: Headline,
-  summary: Summary,
-  media: Media,
-  bullets: Bullets,
+  headline: dynamic(() => import('./headline')),
+  summary: dynamic(() => import('./summary')),
+  media: dynamic(() => import('./media')),
+  bullets: dynamic(() => import('./bullets')),
 };
