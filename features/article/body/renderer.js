@@ -1,18 +1,18 @@
 import { Fragment } from 'react';
 // Native
-import Link from './blocks/link';
-import Paragraph from './blocks/paragraph';
-import Strong from './blocks/strong';
-import Italic from './blocks/italic';
-import Tagline from './blocks/tagline';
-import Subhed from './blocks/subhed';
-import { UnorderedList, OrderedList } from './blocks/list';
-import ListItem from './blocks/list-item';
-import Image from './blocks/image';
-import Video from './blocks/video';
+import Link from './components/link';
+import Paragraph from './components/paragraph';
+import Strong from './components/strong';
+import Italic from './components/italic';
+import Tagline from './components/tagline';
+import Subhed from './components/subhed';
+import { UnorderedList, OrderedList } from './components/list';
+import ListItem from './components/list-item';
+import Image from './components/image';
+import Video from './components/video';
 // Insets
-import DynamicInset from './blocks/insets/dynamic';
-import Pagebreak from './blocks/insets/pagebreak';
+import DynamicInset from './components/insets/dynamic';
+import Pagebreak from './components/insets/pagebreak';
 
 const renderer = (json) => (
   json.map((element, index) => {
