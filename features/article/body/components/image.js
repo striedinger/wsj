@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import NextImage from 'next/image';
 import { useAmp } from 'next/amp';
@@ -50,7 +49,7 @@ const Image = ({
       responsive: { layout },
       softcrop,
     } = {}, height, width,
-  },
+  } = {},
 }) => {
   if (!location) return null;
   // eslint-disable-next-line no-nested-ternary
@@ -82,25 +81,6 @@ const Image = ({
       </Figcaption>
     </Figure>
   );
-};
-
-Image.propTypes = {
-  data: PropTypes.shape({
-    caption: PropTypes.string,
-    credit: PropTypes.string,
-    height: PropTypes.number,
-    properties: PropTypes.shape({
-      location: PropTypes.string,
-      responsive: PropTypes.shape({
-        layout: PropTypes.string,
-      }),
-    }),
-    width: PropTypes.number,
-  }),
-};
-
-Image.defaultProps = {
-  data: {},
 };
 
 export default Image;

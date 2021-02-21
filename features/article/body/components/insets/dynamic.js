@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -23,7 +22,7 @@ const Container = styled.div`
   `}
 `;
 
-const DynamicInset = ({ data }) => {
+const DynamicInset = ({ data = {} }) => {
   const { inset_type: insetType, properties: { responsive: { layout } = {}, url } } = data;
   if (insetType !== 'dynamic') return null;
   return (
@@ -31,22 +30,6 @@ const DynamicInset = ({ data }) => {
       <span>{`Dynamic Inset Placeholder - ${url}`}</span>
     </Container>
   );
-};
-
-DynamicInset.propTypes = {
-  data: PropTypes.shape({
-    inset_type: PropTypes.string,
-    properties: PropTypes.shape({
-      responsive: PropTypes.shape({
-        layout: PropTypes.string,
-      }),
-      url: PropTypes.string,
-    }),
-  }),
-};
-
-DynamicInset.defaultProps = {
-  data: {},
 };
 
 export default DynamicInset;

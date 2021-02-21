@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Image from '../body/blocks/image';
-import Video from '../body/blocks/video';
+import Image from '../body/components/image';
+import Video from '../body/components/video';
 
 const components = {
   image: Image,

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useAmp } from 'next/amp';
 
@@ -47,7 +46,7 @@ const Title = styled.h4`
   padding: 8px 0 0 0;
 `;
 
-const Video = ({ data: { caption, name: guid, title }, isHero }) => {
+const Video = ({ data: { caption, name: guid, title } = {}, isHero }) => {
   if (!guid) return null;
   const isAmp = useAmp();
   const [state, setState] = useState({});
@@ -103,18 +102,6 @@ const Video = ({ data: { caption, name: guid, title }, isHero }) => {
     );
   }
   return withWrapper(<Placeholder />);
-};
-
-Video.propTypes = {
-  data: PropTypes.shape({
-    caption: PropTypes.string,
-    name: PropTypes.string,
-    title: PropTypes.string,
-  }),
-};
-
-Video.defaultProps = {
-  data: {},
 };
 
 export default Video;
