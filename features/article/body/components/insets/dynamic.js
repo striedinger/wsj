@@ -1,15 +1,10 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Mustache from 'mustache';
 
 const Container = styled.div`
-  align-items: center;
-  border: 1px solid black;
   display: flex;
-  height: 300px;
-  justify-content: center;
-  padding: 10px;
-  text-align: center;
-  word-break: break-all;
-  word-wrap: break-word;
+  margin-bottom: 24px;
   width: 100%;
 
   ${(props) => props.layout === 'wrap' && `
@@ -22,13 +17,35 @@ const Container = styled.div`
   `}
 `;
 
+const renderInset = (inset) => {
+  const template = inset?.serverside?.template?.template;
+  const functionName = `insetData_${Math.floor(100000000 + Math.random() * 900000000)}`;
+  const context = {
+    ...(inset?.serverside?.data?.data || {}),
+    insetData: functionName,
+  };
+  let html = Mustache.render(template, context);
+  if (context.includeData) {
+    html = `<script>var ${functionName} = function() {return ${JSON.stringify(context)};};</script> ${html}`;
+  }
+  return html;
+};
+
+// Dynamic insets with client side rendering.
+// Ideally fully rendered HTML should come from the server for better SEO
 const DynamicInset = ({ data = {} }) => {
   const { inset_type: insetType, properties: { responsive: { layout } = {}, url } } = data;
   if (insetType !== 'dynamic') return null;
+  const [inset, setInset] = useState(null);
+
+  useEffect(() => {
+    fetch(url)
+      .then((response) => response.json())
+      .then((json) => setInset(renderInset(json)));
+  }, [url]);
+
   return (
-    <Container layout={layout}>
-      <span>{`Dynamic Inset Placeholder - ${url}`}</span>
-    </Container>
+    <Container layout={layout} data-inset-url={url} dangerouslySetInnerHTML={{ __html: inset }} />
   );
 };
 
